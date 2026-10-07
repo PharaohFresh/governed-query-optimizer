@@ -1,0 +1,14 @@
+{
+  "status": "staged_and_read_back",
+  "target": "local file only",
+  "plan_sha256": "6366d58a741fdd31f8608aea7f6efa03e421d56b3e93e5e04803a54bf48b72f0",
+  "query_sha256": "94469fe450971823aac7fa754f89d7a607fce0c9f774ace82be7346528a23e4e",
+  "approval": {
+    "plan_sha256": "6366d58a741fdd31f8608aea7f6efa03e421d56b3e93e5e04803a54bf48b72f0",
+    "approver": "synthetic-demo-reviewer",
+    "authorization_type": "explicit local-file attestation; identity is not authenticated"
+  },
+  "fixture_equivalence": true,
+  "cloud_deployment": false,
+  "realized_savings": null
+}

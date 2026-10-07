@@ -1,0 +1,8 @@
+[
+ {"id":"preaggregate","description":"Preaggregate item values before joining the order header; retain the full date cohort and itemless-order behavior.","original":"original_revenue.sql","candidate":"preaggregate.sql","original_bytes":268435456000,"candidate_bytes":33554432000,"expected_eligible":true},
+ {"id":"short_window","description":"A smaller scan that removes historical business results.","original":"original_revenue.sql","candidate":"short_window.sql","original_bytes":268435456000,"candidate_bytes":16777216000,"expected_eligible":false},
+ {"id":"distinct_rows","description":"DISTINCT removes repeated values representing separate items.","original":"original_prices.sql","candidate":"deduplicate.sql","original_bytes":268435456000,"candidate_bytes":33554432000,"expected_eligible":false},
+ {"id":"fill_null","description":"Replacing NULL with a sentinel changes the result contract.","original":"original_promotions.sql","candidate":"fill_null.sql","original_bytes":268435456000,"candidate_bytes":33554432000,"expected_eligible":false},
+ {"id":"no_cost_benefit","description":"Equivalent output without the required modeled scan improvement.","original":"original_revenue.sql","candidate":"preaggregate.sql","original_bytes":268435456000,"candidate_bytes":268435456000,"expected_eligible":false},
+ {"id":"write_attempt","description":"A write statement is rejected before execution.","original":"original_prices.sql","candidate":"write_attempt.sql","original_bytes":268435456000,"candidate_bytes":0,"expected_eligible":false}
+]

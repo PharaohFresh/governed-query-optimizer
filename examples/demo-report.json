@@ -1,0 +1,423 @@
+{
+  "data_origin": "synthetic",
+  "evaluations": [
+    {
+      "case_id": "preaggregate",
+      "description": "Preaggregate item values before joining the order header; retain the full date cohort and itemless-order behavior.",
+      "eligible": true,
+      "reason": "eligible for local staging",
+      "comparison": {
+        "equivalent": true,
+        "column_names_match": true,
+        "original_columns": [
+          "order_date",
+          "country",
+          "order_count",
+          "revenue_cents"
+        ],
+        "candidate_columns": [
+          "order_date",
+          "country",
+          "order_count",
+          "revenue_cents"
+        ],
+        "original_rows": 5,
+        "candidate_rows": 5,
+        "missing_row_occurrences": 0,
+        "extra_row_occurrences": 0,
+        "missing_examples": [],
+        "extra_examples": [],
+        "comparison": "ordered column contract; unordered typed row multiset; exact values and multiplicity"
+      },
+      "cost": {
+        "passes": true,
+        "reduction_pct": 87.5,
+        "minimum_reduction_pct": 50.0,
+        "original_bytes": 268435456000,
+        "candidate_bytes": 33554432000,
+        "evidence_type": "synthetic fixture estimate; no measured provider bill"
+      },
+      "input_hashes": {
+        "original_sql": "3965e1da91e33d3b761091f05f8789d5800abeb5a3d2822ad17c5d2242279841",
+        "candidate_sql": "94469fe450971823aac7fa754f89d7a607fce0c9f774ace82be7346528a23e4e",
+        "seed_sql": "ffe663e758c375520af4ef3902b53970446fbc1540433b9aa8324289cccff7a2",
+        "case_contract": "2909d183d6b960de452ed0ba8212201521a376579e92bc84bc1080c27e275320"
+      },
+      "scope": "these frozen synthetic SQLite inputs; not proof of equivalence on unseen warehouse data"
+    },
+    {
+      "case_id": "short_window",
+      "description": "A smaller scan that removes historical business results.",
+      "eligible": false,
+      "reason": "result contract changed",
+      "comparison": {
+        "equivalent": false,
+        "column_names_match": true,
+        "original_columns": [
+          "order_date",
+          "country",
+          "order_count",
+          "revenue_cents"
+        ],
+        "candidate_columns": [
+          "order_date",
+          "country",
+          "order_count",
+          "revenue_cents"
+        ],
+        "original_rows": 5,
+        "candidate_rows": 4,
+        "missing_row_occurrences": 1,
+        "extra_row_occurrences": 0,
+        "missing_examples": [
+          {
+            "row": [
+              [
+                "text",
+                "2026-01-03"
+              ],
+              [
+                "text",
+                "US"
+              ],
+              [
+                "integer",
+                1
+              ],
+              [
+                "integer",
+                5000
+              ]
+            ],
+            "occurrences": 1
+          }
+        ],
+        "extra_examples": [],
+        "comparison": "ordered column contract; unordered typed row multiset; exact values and multiplicity"
+      },
+      "cost": {
+        "passes": true,
+        "reduction_pct": 93.75,
+        "minimum_reduction_pct": 50.0,
+        "original_bytes": 268435456000,
+        "candidate_bytes": 16777216000,
+        "evidence_type": "synthetic fixture estimate; no measured provider bill"
+      },
+      "input_hashes": {
+        "original_sql": "3965e1da91e33d3b761091f05f8789d5800abeb5a3d2822ad17c5d2242279841",
+        "candidate_sql": "01840ad908abea01c052b04b7748708518e066e7b3254ee0f4cf6a01d0f849f6",
+        "seed_sql": "ffe663e758c375520af4ef3902b53970446fbc1540433b9aa8324289cccff7a2",
+        "case_contract": "42fc6fd53b4edce7e29e78bc3e71f91df13fba12df3ea406568b82765677e382"
+      },
+      "scope": "these frozen synthetic SQLite inputs; not proof of equivalence on unseen warehouse data"
+    },
+    {
+      "case_id": "distinct_rows",
+      "description": "DISTINCT removes repeated values representing separate items.",
+      "eligible": false,
+      "reason": "result contract changed",
+      "comparison": {
+        "equivalent": false,
+        "column_names_match": true,
+        "original_columns": [
+          "order_id",
+          "unit_price_cents"
+        ],
+        "candidate_columns": [
+          "order_id",
+          "unit_price_cents"
+        ],
+        "original_rows": 8,
+        "candidate_rows": 7,
+        "missing_row_occurrences": 1,
+        "extra_row_occurrences": 0,
+        "missing_examples": [
+          {
+            "row": [
+              [
+                "integer",
+                1
+              ],
+              [
+                "integer",
+                2500
+              ]
+            ],
+            "occurrences": 1
+          }
+        ],
+        "extra_examples": [],
+        "comparison": "ordered column contract; unordered typed row multiset; exact values and multiplicity"
+      },
+      "cost": {
+        "passes": true,
+        "reduction_pct": 87.5,
+        "minimum_reduction_pct": 50.0,
+        "original_bytes": 268435456000,
+        "candidate_bytes": 33554432000,
+        "evidence_type": "synthetic fixture estimate; no measured provider bill"
+      },
+      "input_hashes": {
+        "original_sql": "70326d72dd701e911b1c728f2baeb2ac27c85ddaf008410f53b22fd3993f2605",
+        "candidate_sql": "b23171f9cf706ad4b49ff52d01bb83ad097c69913701dcf807776488c5e24a25",
+        "seed_sql": "ffe663e758c375520af4ef3902b53970446fbc1540433b9aa8324289cccff7a2",
+        "case_contract": "3a73e7c47ff941558b9acb904e1dfb4ed5762ac6830d1d6290b2ea0ce9f78cb4"
+      },
+      "scope": "these frozen synthetic SQLite inputs; not proof of equivalence on unseen warehouse data"
+    },
+    {
+      "case_id": "fill_null",
+      "description": "Replacing NULL with a sentinel changes the result contract.",
+      "eligible": false,
+      "reason": "result contract changed",
+      "comparison": {
+        "equivalent": false,
+        "column_names_match": true,
+        "original_columns": [
+          "item_id",
+          "promotion"
+        ],
+        "candidate_columns": [
+          "item_id",
+          "promotion"
+        ],
+        "original_rows": 8,
+        "candidate_rows": 8,
+        "missing_row_occurrences": 5,
+        "extra_row_occurrences": 5,
+        "missing_examples": [
+          {
+            "row": [
+              [
+                "integer",
+                1
+              ],
+              [
+                "null",
+                null
+              ]
+            ],
+            "occurrences": 1
+          },
+          {
+            "row": [
+              [
+                "integer",
+                2
+              ],
+              [
+                "null",
+                null
+              ]
+            ],
+            "occurrences": 1
+          },
+          {
+            "row": [
+              [
+                "integer",
+                4
+              ],
+              [
+                "null",
+                null
+              ]
+            ],
+            "occurrences": 1
+          },
+          {
+            "row": [
+              [
+                "integer",
+                6
+              ],
+              [
+                "null",
+                null
+              ]
+            ],
+            "occurrences": 1
+          },
+          {
+            "row": [
+              [
+                "integer",
+                7
+              ],
+              [
+                "null",
+                null
+              ]
+            ],
+            "occurrences": 1
+          }
+        ],
+        "extra_examples": [
+          {
+            "row": [
+              [
+                "integer",
+                1
+              ],
+              [
+                "text",
+                "UNKNOWN"
+              ]
+            ],
+            "occurrences": 1
+          },
+          {
+            "row": [
+              [
+                "integer",
+                2
+              ],
+              [
+                "text",
+                "UNKNOWN"
+              ]
+            ],
+            "occurrences": 1
+          },
+          {
+            "row": [
+              [
+                "integer",
+                4
+              ],
+              [
+                "text",
+                "UNKNOWN"
+              ]
+            ],
+            "occurrences": 1
+          },
+          {
+            "row": [
+              [
+                "integer",
+                6
+              ],
+              [
+                "text",
+                "UNKNOWN"
+              ]
+            ],
+            "occurrences": 1
+          },
+          {
+            "row": [
+              [
+                "integer",
+                7
+              ],
+              [
+                "text",
+                "UNKNOWN"
+              ]
+            ],
+            "occurrences": 1
+          }
+        ],
+        "comparison": "ordered column contract; unordered typed row multiset; exact values and multiplicity"
+      },
+      "cost": {
+        "passes": true,
+        "reduction_pct": 87.5,
+        "minimum_reduction_pct": 50.0,
+        "original_bytes": 268435456000,
+        "candidate_bytes": 33554432000,
+        "evidence_type": "synthetic fixture estimate; no measured provider bill"
+      },
+      "input_hashes": {
+        "original_sql": "0771d1fbfcd630227649b1cf5a12c0d762a6316e99b5bf447e47fddd3f4883e9",
+        "candidate_sql": "8d888feb85b3477926d3744249f0f5dabd827ca8544ab4b5e7df4f4abb5a267e",
+        "seed_sql": "ffe663e758c375520af4ef3902b53970446fbc1540433b9aa8324289cccff7a2",
+        "case_contract": "0c82f620547cc9964927f2c9ec208a9619140163605e386c4b5f5330435f6900"
+      },
+      "scope": "these frozen synthetic SQLite inputs; not proof of equivalence on unseen warehouse data"
+    },
+    {
+      "case_id": "no_cost_benefit",
+      "description": "Equivalent output without the required modeled scan improvement.",
+      "eligible": false,
+      "reason": "insufficient modeled scan reduction",
+      "comparison": {
+        "equivalent": true,
+        "column_names_match": true,
+        "original_columns": [
+          "order_date",
+          "country",
+          "order_count",
+          "revenue_cents"
+        ],
+        "candidate_columns": [
+          "order_date",
+          "country",
+          "order_count",
+          "revenue_cents"
+        ],
+        "original_rows": 5,
+        "candidate_rows": 5,
+        "missing_row_occurrences": 0,
+        "extra_row_occurrences": 0,
+        "missing_examples": [],
+        "extra_examples": [],
+        "comparison": "ordered column contract; unordered typed row multiset; exact values and multiplicity"
+      },
+      "cost": {
+        "passes": false,
+        "reduction_pct": 0.0,
+        "minimum_reduction_pct": 50.0,
+        "original_bytes": 268435456000,
+        "candidate_bytes": 268435456000,
+        "evidence_type": "synthetic fixture estimate; no measured provider bill"
+      },
+      "input_hashes": {
+        "original_sql": "3965e1da91e33d3b761091f05f8789d5800abeb5a3d2822ad17c5d2242279841",
+        "candidate_sql": "94469fe450971823aac7fa754f89d7a607fce0c9f774ace82be7346528a23e4e",
+        "seed_sql": "ffe663e758c375520af4ef3902b53970446fbc1540433b9aa8324289cccff7a2",
+        "case_contract": "3012f9da8355f4e894f0c832d096a4ad4aed8be93c041f5dc519581383dc0911"
+      },
+      "scope": "these frozen synthetic SQLite inputs; not proof of equivalence on unseen warehouse data"
+    },
+    {
+      "case_id": "write_attempt",
+      "description": "A write statement is rejected before execution.",
+      "eligible": false,
+      "reason": "query rejected by the read-only evaluator",
+      "comparison": {
+        "equivalent": false,
+        "error": "Read-only query validation failed: not authorized"
+      },
+      "cost": {
+        "passes": true,
+        "reduction_pct": 100.0,
+        "minimum_reduction_pct": 50.0,
+        "original_bytes": 268435456000,
+        "candidate_bytes": 0,
+        "evidence_type": "synthetic fixture estimate; no measured provider bill"
+      },
+      "input_hashes": {
+        "original_sql": "70326d72dd701e911b1c728f2baeb2ac27c85ddaf008410f53b22fd3993f2605",
+        "candidate_sql": "1bb6391fd69693652d78fe0c7e7da69b37b111cc5a459c075ad316d4e4e6381a",
+        "seed_sql": "ffe663e758c375520af4ef3902b53970446fbc1540433b9aa8324289cccff7a2",
+        "case_contract": "46bb08a19d226f8b1456c632b708a2759f9589c89df3916b616bfaaed7dd21d8"
+      },
+      "scope": "these frozen synthetic SQLite inputs; not proof of equivalence on unseen warehouse data"
+    }
+  ],
+  "workload_intake": {
+    "workloads": {
+      "daily-revenue": {
+        "jobs": 2,
+        "billed_bytes": 536870912000
+      }
+    },
+    "duplicate_job_records_ignored": 1,
+    "child_jobs_ignored": 1,
+    "failed_or_incomplete_jobs_ignored": 1,
+    "annualized_savings": null,
+    "evidence_type": "synthetic observed-window records"
+  }
+}

@@ -1,0 +1,7 @@
+[
+ {"job_id":"job-001","workload_id":"daily-revenue","parent_job_id":null,"state":"DONE","error":null,"billed_bytes":268435456000,"created_at":"2026-09-01T06:00:00+00:00"},
+ {"job_id":"job-001","workload_id":"daily-revenue","parent_job_id":null,"state":"DONE","error":null,"billed_bytes":268435456000,"created_at":"2026-09-01T06:00:00+00:00"},
+ {"job_id":"job-002","workload_id":"daily-revenue","parent_job_id":null,"state":"DONE","error":null,"billed_bytes":268435456000,"created_at":"2026-09-02T06:00:00+00:00"},
+ {"job_id":"child-001","workload_id":"daily-revenue","parent_job_id":"job-001","state":"DONE","error":null,"billed_bytes":268435456000,"created_at":"2026-09-01T06:00:01+00:00"},
+ {"job_id":"failed-001","workload_id":"daily-revenue","parent_job_id":null,"state":"DONE","error":"synthetic failure","billed_bytes":0,"created_at":"2026-09-03T06:00:00+00:00"}
+]
