@@ -32,4 +32,4 @@ The warehouse optimizer may produce similar plans for both queries. Equal byte s
 
 Actual result reports are retained as artifacts of the [companion workflow](https://github.com/PharaohFresh/analytics-engineering-portfolio/actions/workflows/optimizer-benchmark.yml). A committed result snapshot, if present, must be marked complete and identify its measurement timestamp, query hashes, public-data snapshot and raw jobs. Do not replace a failed or unrun experiment with synthetic measurements.
 
-Provider references: [estimate and control query costs](https://docs.cloud.google.com/bigquery/docs/best-practices-costs), [time travel queries](https://docs.cloud.google.com/bigquery/docs/access-historical-data).
+Provider references: [estimate and control query costs](https://docs.cloud.google.com/bigquery/docs/best-practices-costs), [time travel queries](https://docs.cloud.google.com/bigquery/docs/access-historical-data), [table alias and time-travel grammar](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#from_clause).
