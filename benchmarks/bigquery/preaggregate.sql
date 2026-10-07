@@ -5,7 +5,7 @@ WITH items AS (
   FROM `bigquery-public-data.thelook_ecommerce.order_items` FOR SYSTEM_TIME AS OF @snapshot_time
   GROUP BY order_id
 )
-SELECT o.id AS order_id, o.user_id AS customer_id, i.revenue_cents
+SELECT o.order_id AS order_id, o.user_id AS customer_id, i.revenue_cents
 FROM `bigquery-public-data.thelook_ecommerce.orders` AS o FOR SYSTEM_TIME AS OF @snapshot_time
-LEFT JOIN items AS i ON o.id = i.order_id
+LEFT JOIN items AS i ON o.order_id = i.order_id
 WHERE DATE(o.created_at) >= DATE '2026-02-01' AND DATE(o.created_at) < DATE '2026-05-01'
