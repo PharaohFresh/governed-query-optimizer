@@ -1,0 +1,332 @@
+{
+  "evidence_type": "measured BigQuery jobs on public data",
+  "snapshot_time": "2026-10-07T03:56:34.038975+00:00",
+  "measurement_started_at": "2026-10-07T03:58:34.038992+00:00",
+  "execution_project": "career-analytics-portfolio",
+  "location": "US",
+  "library_version": "3.42.1",
+  "requested_server_timeout_ms": 120000,
+  "cohort": "Order-created date from 2026-02-01 inclusive through 2026-05-01 exclusive",
+  "maximum_bytes_billed_per_job": 100000000,
+  "maximum_execution_jobs": 6,
+  "query_sha256": {
+    "original": "fed523c185e17985ad323d2bec1e9e8804f8877e5c3b8ba9c00511e72e3628f9",
+    "preaggregate": "d775c7b05bc7487b7973dd1eaf014bccb18ce34672bcff79fdeecb7ac69a9086"
+  },
+  "dry_runs": {
+    "original": {
+      "estimated_bytes_processed": 5894360,
+      "evidence_type": "warehouse dry-run estimate"
+    },
+    "preaggregate": {
+      "estimated_bytes_processed": 5894360,
+      "evidence_type": "warehouse dry-run estimate"
+    }
+  },
+  "execution_jobs": [
+    {
+      "query": "original",
+      "job_id": "portfolio_optimizer_842995f69dca470fb2efd50cfa9aafd3",
+      "state": "DONE",
+      "comparison": "equivalent",
+      "cache_hit": false,
+      "bytes_processed": 5894360,
+      "bytes_billed": 20971520,
+      "slot_ms": 55,
+      "started_at": "2026-10-07T03:58:36.204000+00:00",
+      "ended_at": "2026-10-07T03:58:36.447000+00:00",
+      "execution_ms": 243.0,
+      "schema": [
+        [
+          "order_id",
+          "INTEGER",
+          "NULLABLE"
+        ],
+        [
+          "customer_id",
+          "INTEGER",
+          "NULLABLE"
+        ],
+        [
+          "revenue_cents",
+          "INTEGER",
+          "NULLABLE"
+        ]
+      ],
+      "row_count": 10123,
+      "result_multiset_sha256": "f3516cef66e7bb45e336f1087abec54fbdac2cac9cff01764d696089978bca35"
+    },
+    {
+      "query": "preaggregate",
+      "job_id": "portfolio_optimizer_bb458b9dca86464fa0cff9b4e675afd7",
+      "state": "DONE",
+      "comparison": "equivalent",
+      "cache_hit": false,
+      "bytes_processed": 5894360,
+      "bytes_billed": 20971520,
+      "slot_ms": 120,
+      "started_at": "2026-10-07T03:58:42.506000+00:00",
+      "ended_at": "2026-10-07T03:58:42.809000+00:00",
+      "execution_ms": 303.0,
+      "schema": [
+        [
+          "order_id",
+          "INTEGER",
+          "NULLABLE"
+        ],
+        [
+          "customer_id",
+          "INTEGER",
+          "NULLABLE"
+        ],
+        [
+          "revenue_cents",
+          "INTEGER",
+          "NULLABLE"
+        ]
+      ],
+      "row_count": 10123,
+      "result_multiset_sha256": "f3516cef66e7bb45e336f1087abec54fbdac2cac9cff01764d696089978bca35"
+    },
+    {
+      "query": "preaggregate",
+      "job_id": "portfolio_optimizer_ab104c22705841b29795e7ddeeeec289",
+      "state": "DONE",
+      "comparison": "equivalent",
+      "cache_hit": false,
+      "bytes_processed": 5894360,
+      "bytes_billed": 20971520,
+      "slot_ms": 122,
+      "started_at": "2026-10-07T03:58:43.834000+00:00",
+      "ended_at": "2026-10-07T03:58:44.119000+00:00",
+      "execution_ms": 285.0,
+      "schema": [
+        [
+          "order_id",
+          "INTEGER",
+          "NULLABLE"
+        ],
+        [
+          "customer_id",
+          "INTEGER",
+          "NULLABLE"
+        ],
+        [
+          "revenue_cents",
+          "INTEGER",
+          "NULLABLE"
+        ]
+      ],
+      "row_count": 10123,
+      "result_multiset_sha256": "f3516cef66e7bb45e336f1087abec54fbdac2cac9cff01764d696089978bca35"
+    },
+    {
+      "query": "original",
+      "job_id": "portfolio_optimizer_84aac6a3c7384ca9afda7421cc96fe9a",
+      "state": "DONE",
+      "comparison": "equivalent",
+      "cache_hit": false,
+      "bytes_processed": 5894360,
+      "bytes_billed": 20971520,
+      "slot_ms": 99,
+      "started_at": "2026-10-07T03:58:45.155000+00:00",
+      "ended_at": "2026-10-07T03:58:45.572000+00:00",
+      "execution_ms": 417.0,
+      "schema": [
+        [
+          "order_id",
+          "INTEGER",
+          "NULLABLE"
+        ],
+        [
+          "customer_id",
+          "INTEGER",
+          "NULLABLE"
+        ],
+        [
+          "revenue_cents",
+          "INTEGER",
+          "NULLABLE"
+        ]
+      ],
+      "row_count": 10123,
+      "result_multiset_sha256": "f3516cef66e7bb45e336f1087abec54fbdac2cac9cff01764d696089978bca35"
+    },
+    {
+      "query": "original",
+      "job_id": "portfolio_optimizer_66551669d619470c82ca37dd8660ae78",
+      "state": "DONE",
+      "comparison": "equivalent",
+      "cache_hit": false,
+      "bytes_processed": 5894360,
+      "bytes_billed": 20971520,
+      "slot_ms": 76,
+      "started_at": "2026-10-07T03:58:46.702000+00:00",
+      "ended_at": "2026-10-07T03:58:46.990000+00:00",
+      "execution_ms": 288.0,
+      "schema": [
+        [
+          "order_id",
+          "INTEGER",
+          "NULLABLE"
+        ],
+        [
+          "customer_id",
+          "INTEGER",
+          "NULLABLE"
+        ],
+        [
+          "revenue_cents",
+          "INTEGER",
+          "NULLABLE"
+        ]
+      ],
+      "row_count": 10123,
+      "result_multiset_sha256": "f3516cef66e7bb45e336f1087abec54fbdac2cac9cff01764d696089978bca35"
+    },
+    {
+      "query": "preaggregate",
+      "job_id": "portfolio_optimizer_3a29b271ae4c4b6eb61f8defb0251b86",
+      "state": "DONE",
+      "comparison": "equivalent",
+      "cache_hit": false,
+      "bytes_processed": 5894360,
+      "bytes_billed": 20971520,
+      "slot_ms": 71,
+      "started_at": "2026-10-07T03:58:47.983000+00:00",
+      "ended_at": "2026-10-07T03:58:48.221000+00:00",
+      "execution_ms": 238.0,
+      "schema": [
+        [
+          "order_id",
+          "INTEGER",
+          "NULLABLE"
+        ],
+        [
+          "customer_id",
+          "INTEGER",
+          "NULLABLE"
+        ],
+        [
+          "revenue_cents",
+          "INTEGER",
+          "NULLABLE"
+        ]
+      ],
+      "row_count": 10123,
+      "result_multiset_sha256": "f3516cef66e7bb45e336f1087abec54fbdac2cac9cff01764d696089978bca35"
+    }
+  ],
+  "samples": [
+    {
+      "query": "original",
+      "job_id": "portfolio_optimizer_842995f69dca470fb2efd50cfa9aafd3",
+      "cache_hit": false,
+      "bytes_processed": 5894360,
+      "bytes_billed": 20971520,
+      "slot_ms": 55,
+      "execution_ms": 243.0,
+      "row_count": 10123,
+      "result_multiset_sha256": "f3516cef66e7bb45e336f1087abec54fbdac2cac9cff01764d696089978bca35",
+      "equivalent": true
+    },
+    {
+      "query": "preaggregate",
+      "job_id": "portfolio_optimizer_bb458b9dca86464fa0cff9b4e675afd7",
+      "cache_hit": false,
+      "bytes_processed": 5894360,
+      "bytes_billed": 20971520,
+      "slot_ms": 120,
+      "execution_ms": 303.0,
+      "row_count": 10123,
+      "result_multiset_sha256": "f3516cef66e7bb45e336f1087abec54fbdac2cac9cff01764d696089978bca35",
+      "equivalent": true
+    },
+    {
+      "query": "preaggregate",
+      "job_id": "portfolio_optimizer_ab104c22705841b29795e7ddeeeec289",
+      "cache_hit": false,
+      "bytes_processed": 5894360,
+      "bytes_billed": 20971520,
+      "slot_ms": 122,
+      "execution_ms": 285.0,
+      "row_count": 10123,
+      "result_multiset_sha256": "f3516cef66e7bb45e336f1087abec54fbdac2cac9cff01764d696089978bca35",
+      "equivalent": true
+    },
+    {
+      "query": "original",
+      "job_id": "portfolio_optimizer_84aac6a3c7384ca9afda7421cc96fe9a",
+      "cache_hit": false,
+      "bytes_processed": 5894360,
+      "bytes_billed": 20971520,
+      "slot_ms": 99,
+      "execution_ms": 417.0,
+      "row_count": 10123,
+      "result_multiset_sha256": "f3516cef66e7bb45e336f1087abec54fbdac2cac9cff01764d696089978bca35",
+      "equivalent": true
+    },
+    {
+      "query": "original",
+      "job_id": "portfolio_optimizer_66551669d619470c82ca37dd8660ae78",
+      "cache_hit": false,
+      "bytes_processed": 5894360,
+      "bytes_billed": 20971520,
+      "slot_ms": 76,
+      "execution_ms": 288.0,
+      "row_count": 10123,
+      "result_multiset_sha256": "f3516cef66e7bb45e336f1087abec54fbdac2cac9cff01764d696089978bca35",
+      "equivalent": true
+    },
+    {
+      "query": "preaggregate",
+      "job_id": "portfolio_optimizer_3a29b271ae4c4b6eb61f8defb0251b86",
+      "cache_hit": false,
+      "bytes_processed": 5894360,
+      "bytes_billed": 20971520,
+      "slot_ms": 71,
+      "execution_ms": 238.0,
+      "row_count": 10123,
+      "result_multiset_sha256": "f3516cef66e7bb45e336f1087abec54fbdac2cac9cff01764d696089978bca35",
+      "equivalent": true
+    }
+  ],
+  "complete": true,
+  "schema": [
+    [
+      "order_id",
+      "INTEGER",
+      "NULLABLE"
+    ],
+    [
+      "customer_id",
+      "INTEGER",
+      "NULLABLE"
+    ],
+    [
+      "revenue_cents",
+      "INTEGER",
+      "NULLABLE"
+    ]
+  ],
+  "summary": {
+    "original": {
+      "bytes_processed": 5894360,
+      "bytes_billed": 20971520,
+      "slot_ms": 76,
+      "execution_ms": 288.0
+    },
+    "preaggregate": {
+      "bytes_processed": 5894360,
+      "bytes_billed": 20971520,
+      "slot_ms": 120,
+      "execution_ms": 285.0
+    },
+    "interpretation": {
+      "processed_bytes_reduction_fraction": 0.0,
+      "execution_median_ratio_candidate_over_original": 0.9895833333333334,
+      "scope": "Observed public-data experiment; three samples per query, not a production speedup or realized savings claim"
+    }
+  },
+  "measurement_completed_at": "2026-10-07T03:58:49.072353+00:00"
+}

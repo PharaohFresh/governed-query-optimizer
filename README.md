@@ -10,6 +10,8 @@ The default lab's data, query history and cost estimates are synthetic. Its SQL 
 
 ## Start here
 
+**Measured public-data proof:** [native BigQuery result and method](examples/bigquery-measurement-2026-10-06.md). Six uncached jobs return the same 10,123-row typed multiset. Both versions process 5,894,360 bytes; the experiment finds no scan reduction. Fixture estimates remain synthetic.
+
 | Reader | Useful starting point |
 |---|---|
 | Recruiter or hiring manager | The behavior table below and the [generated demonstration report](examples/demo-report.json) |
