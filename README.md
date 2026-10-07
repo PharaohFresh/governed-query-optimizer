@@ -6,7 +6,7 @@ A runnable SQL optimization lab that rejects a cheaper query when it changes the
 
 The engineering problem is simple: shortening a date range, dropping repeated rows or filling nulls can reduce a scan while quietly changing a business metric. A compiler check and a lower byte estimate do not catch that. This project makes correctness a prerequisite for considering the cost improvement.
 
-All data, query history and cost estimates are synthetic. The SQL comparison actually executes against a frozen SQLite fixture. The byte estimates demonstrate the decision policy; they are not measured BigQuery scans or realized savings.
+The default lab's data, query history and cost estimates are synthetic. Its SQL comparison executes against a frozen SQLite fixture. Those byte estimates demonstrate the decision policy; they are not measured BigQuery scans or realized savings. A separate [bounded BigQuery experiment](benchmarks/bigquery/README.md) adds warehouse dry-run estimates, actual uncached job statistics and duplicate-sensitive comparisons on a frozen public-data snapshot. It does not change the local lab's evidence type or approval policy.
 
 ## Start here
 
@@ -93,9 +93,11 @@ The suite covers expected candidate verdicts, duplicate loss, null changes, colu
 
 ## Scope and extension points
 
+The [BigQuery experiment](benchmarks/bigquery/README.md) compares a fixed original/preaggregation pair in the target dialect, on the same time-travel snapshot. It distinguishes estimated, processed and billed bytes and reports three samples per query. Its measurements are an experiment, not an automatic cost-benefit verdict or generalized adapter for arbitrary SQL.
+
 The implemented project evaluates recorded SQL candidates. Proposals can be authored by an analyst, a rule engine or an AI tool; a live LLM proposal service is not implemented here. The demonstration's preaggregation rewrite is deliberately small enough to inspect completely.
 
-This evaluator does not establish BigQuery/Snowflake dialect equivalence, privacy isolation for arbitrary production databases, ordering equivalence for a top-N consumer, performance on warehouse-scale data or stability on unseen data. SQLite and exact fixture comparisons are the local proof boundary.
+The default evaluator does not establish BigQuery/Snowflake dialect equivalence, privacy isolation for arbitrary production databases, ordering equivalence for a top-N consumer, performance on warehouse-scale data or stability on unseen data. SQLite and exact fixture comparisons are its local proof boundary; the separate BigQuery experiment establishes only its fixed pair's observed snapshot results and job measurements.
 
 For a real warehouse adapter, preserve the same contract while adding a consistent source snapshot, target-dialect compilation, duplicate-aware comparisons at scale, approved numeric tolerances, actual dry-run/job statistics, trusted identity, least-privilege credentials and an explicit deployment workflow. Do not substitute a narrower business date window for a faster implementation of the same request.
 
