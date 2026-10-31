@@ -99,7 +99,8 @@ def test_staging_requires_exact_approved_plan(tmp_path):
     approval=approve_plan(plan,"demo-reviewer")
     with pytest.raises(ValidationError):
         stage_plan(plan,{},tmp_path/"blocked")
-    modified=copy.deepcopy(plan);modified["candidate_sql"]+="\n-- changed after review"
+    modified=copy.deepcopy(plan)
+    modified["candidate_sql"]+="\n-- changed after review"
     with pytest.raises(ValidationError):
         stage_plan(modified,approval,tmp_path/"changed")
     assert not (tmp_path/"blocked").exists()
@@ -118,6 +119,7 @@ def test_workload_history_does_not_double_count_parent_and_child_jobs():
     assert result["duplicate_job_records_ignored"]==1
     assert result["child_jobs_ignored"]==1
     assert result["annualized_savings"] is None
-    conflicting=copy.deepcopy(jobs[0]);conflicting["billed_bytes"]+=1
+    conflicting=copy.deepcopy(jobs[0])
+    conflicting["billed_bytes"]+=1
     with pytest.raises(ValidationError):
         summarize_workloads(jobs+[conflicting])
