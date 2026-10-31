@@ -1,6 +1,6 @@
 # Governed Query Optimizer
 
-A runnable SQL optimization lab that rejects a cheaper query when it changes the answer. It combines query-workload intake, duplicate-sensitive result comparison, explicit cost-evidence labeling and approval-bound local staging.
+A SQL rewrite evaluation lab that checks whether a candidate preserves the answer before considering cost. It rejects unsafe changes, labels synthetic estimates separately from warehouse measurements, and stages only an approved candidate. The public BigQuery experiment preserved results but found no scan reduction.
 
 **Author:** [Amir Ebrahim](https://www.linkedin.com/in/amirebrahim/) · Senior Analytics Engineer
 
@@ -14,20 +14,23 @@ The default lab's data, query history and cost estimates are synthetic. Its SQL 
 
 | Reader | Useful starting point |
 |---|---|
-| Recruiter or hiring manager | The behavior table below and the [generated demonstration report](examples/demo-report.json) |
+| Recruiter or hiring manager | The [result table](#what-the-demonstration-proves) below; the [generated demonstration report](examples/demo-report.json) is its raw evidence |
 | Analytics engineer | [Original revenue query](src/governed_query_optimizer/fixtures/original_revenue.sql), [preaggregated candidate](src/governed_query_optimizer/fixtures/preaggregate.sql), and [result comparison](src/governed_query_optimizer/engine.py) |
 | Data/platform engineer | [Approval-bound staging](docs/design.md), [negative-path tests](tests/test_engine.py) and [CI](.github/workflows/ci.yml) |
 
 ## What the demonstration proves
 
-| Candidate | Behavior | Engineering point |
-|---|---|---|
-| Preaggregate item values before joining order headers | Eligible after equal results and the fixture cost gate | Preserve the original date cohort and itemless-order behavior |
-| Remove historical dates | Blocked despite a smaller estimate | Less data is not an equivalent optimization |
-| Add `DISTINCT` to repeated item values | Blocked | Compare row multiplicity, not only distinct sets |
-| Replace `NULL` with a sentinel | Blocked | Missing values and categorical defaults have different meanings |
-| Equivalent results without enough modeled cost improvement | Blocked | Correctness and benefit are separate gates |
-| Execute a write statement | Blocked before mutation | Candidate evaluation stays read-only |
+| Candidate | Same answer? | Scan change | Verdict and why |
+|---|---|---|---|
+| Preaggregate item values before joining order headers | Yes: 5 of 5 rows | −87.5% (synthetic estimate) | **Eligible.** Keeps the original date cohort and itemless orders |
+| Remove historical dates | No: 1 row missing | −93.75% (synthetic estimate) | **Blocked.** Less data is not an equivalent optimization |
+| Add `DISTINCT` to repeated item values | No: 8 rows become 7 | −87.5% (synthetic estimate) | **Blocked.** Repeated values are separate items |
+| Replace `NULL` with a sentinel | No: 5 of 8 rows changed | −87.5% (synthetic estimate) | **Blocked.** Missing and default values mean different things |
+| Equivalent rewrite with no modeled saving | Yes: 5 of 5 rows | 0%; the gate requires 50% | **Blocked.** Correctness and benefit are separate gates |
+| Execute a write statement | Not run | Not applicable: rejected before execution | **Blocked** by the read-only evaluator before any mutation |
+| **Measured on BigQuery:** a preaggregation of the same kind on public data (different query and schema) | Yes: one 10,123-row typed multiset across six uncached jobs | **0%**: both process 5,894,360 bytes | **No saving found.** Results matched; there is no cost claim |
+
+Fixture rows run on a frozen SQLite fixture, and its byte estimates are synthetic inputs to the decision policy. The last row is a [measured experiment](examples/bigquery-measurement-2026-10-06.md) with three samples per query, not a production speedup.
 
 ```mermaid
 flowchart LR
